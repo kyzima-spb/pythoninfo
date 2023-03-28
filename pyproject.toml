@@ -1,6 +1,7 @@
 [project]
 name = "pythoninfo"
 description = "Just for fan - phpinfo in python =)"
+readme = "README.rst"
 license = {text = "MIT License"}
 authors = [
     {name = "Kirill Vercetti", email = "office@kyzima-spb.com"},
@@ -11,6 +12,10 @@ dependencies = [
     'importlib-resources; python_version<"3.7"',
 ]
 dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/kyzima-spb/pythoninfo"
+repository = "https://github.com/kyzima-spb/pythoninfo.git"
 
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
