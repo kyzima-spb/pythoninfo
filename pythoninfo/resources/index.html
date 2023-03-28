@@ -4,12 +4,16 @@
   <title>Python $version</title>
   <meta name="robots" content="noindex,nofollow,noarchive">
   <style>
+    :root {
+      --wrapper-width: 934px;
+    }
+
     body {
       background-color: #fff;
       color: #222;
       font-family: sans-serif;
       margin: 1rem auto;
-      width: 934px;
+      width: var(--wrapper-width);
     }
 
     pre {
@@ -80,6 +84,7 @@
 
     td {
       background-color: #ddd;
+      max-width: 300px;
       overflow-x: auto;
       word-wrap: break-word;
     }
@@ -87,7 +92,7 @@
     td:first-child {
       background-color: #ccf;
       font-weight: bold;
-      width: 32%;
+      width: 300px;
     }
 
     td i {

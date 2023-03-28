@@ -18,8 +18,9 @@ def get_installed_packages() -> t.Dict[str, t.List[t.Tuple[str, str]]]:
     ignored = {'pip', 'setuptools', 'wheel'}
     result = {}
 
-    for d in sorted(distributions(), key=lambda d: d.name.lower()):
-        if d.name not in ignored:
+    for d in sorted(distributions(), key=lambda d: d.metadata['Name'].lower()):
+        name = d.metadata['Name']
+        if name not in ignored:
             m = d.metadata
             value = [(k, m.get(k, '')) for k in fields]
             value.append((
@@ -28,7 +29,7 @@ def get_installed_packages() -> t.Dict[str, t.List[t.Tuple[str, str]]]:
             value.append((
                 'Links', sorted(i.split(', ') for i in m.get_all('Project-URL', ()))
             ))
-            result[d.name] = value
+            result[name] = value
 
     return result
 
@@ -121,7 +122,7 @@ def render_system_table() -> str:
 
 
 def render_template(name, **kwargs):
-    path = files(__name__).joinpath(name)
+    path = files(__name__).joinpath(f'resources/{name}')
     tmpl = Template(path.read_text())
     return tmpl.substitute(**kwargs)
 
