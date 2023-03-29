@@ -44,6 +44,7 @@ def get_system_info() -> t.List[t.Tuple[str, str]]:
         ('Compiler', platform.python_compiler()),
         ('Scm Branch', platform.python_branch()),
         ('Scm Revision', platform.python_revision()),
+        ('Run in Docker', os.path.exists('/.dockerenv')),
     ]
 
 
@@ -78,7 +79,7 @@ def render_table(rows, headers=None) -> str:
 def render_env_table():
     header = render_header('Environment')
     table = render_table(
-        rows=os.environ.items(),
+        rows=sorted(os.environ.items()),
         headers=('Variable', 'Value')
     )
     return f'{header}{table}'
@@ -93,9 +94,7 @@ def render_packages_table():
 
         for k, v in m:
             if k == 'Requires':
-                rows.append((
-                    'Requires', '<br>'.join(v)
-                ))
+                rows.append(('Requires', '<br>'.join(v)))
             elif k == 'Links':
                 rows.extend((text, render_hyperlink(url)) for text, url in v)
             else:
