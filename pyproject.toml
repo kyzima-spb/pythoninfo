@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.6"
 dependencies = [
     'importlib-metadata; python_version<"3.8"',
-    'importlib-resources; python_version<"3.7"',
+    'importlib-resources; python_version<"3.9"',
 ]
 dynamic = ["version"]
 
